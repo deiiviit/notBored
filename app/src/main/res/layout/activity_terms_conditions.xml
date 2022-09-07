@@ -14,11 +14,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="48dp"
         android:textAlignment="inherit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -37,12 +36,12 @@
         android:id="@+id/textView4"
         android:layout_width="208dp"
         android:layout_height="29dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="92dp"
         android:text="@string/terms_conditions_activity_terms_and_conditions"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -51,7 +50,7 @@
         android:id="@+id/textView5"
         android:layout_width="159dp"
         android:layout_height="48dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="164dp"
         android:text="@string/not_bored_activity_inicio"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/color_button"
@@ -68,10 +67,10 @@
         android:background="@color/coor_background"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18"
+        app:layout_constraintVertical_bias="0.176"
         app:srcCompat="@drawable/ic_baseline_clear_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
