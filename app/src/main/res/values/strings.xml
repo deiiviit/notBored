@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">notBored</string>
+
     <string name="not_bored_activity_inicio">Not Bored</string>
     <string name="participants_activity_inicio">Participants</string>
     <string name="start_button_activity_inicio">Start</string>
@@ -18,5 +19,9 @@
         Nisl pulvinar taciti tellus diam quam dictum cursus potenti euismod natoque feugiat mattis ornare tortor, aliquam orci dapibus inceptos id egestas ante viverra donec aptent suscipit nulla. Eget nisl fringilla cras felis maecenas
         nisi ridiculus id conubia hac primis sem ullamcorper porttitor, rutrum ac sodales ultrices vestibulum cum leo semper fusce porta eu fermentum. Proin nisi suspendisse class facilisi curabitur quisque, fusce vulputate semper
         a nulla velit, duis in orci faucibus turpis. Risus metus magnis aliquam accumsan laoreet congue per, tempus purus et odio senectus sodales vulputate, ligula malesuada dis habitasse nullam pellentesque.</string>
+
+
+    <string name="suggestionName">Recreational</string>
+    <string name="activities">Activities</string>
 
 </resources>
