@@ -29,16 +29,16 @@ class SuggestionActivity : AppCompatActivity() {
         val participants = intent.getIntExtra("participants", 1)
         val category = intent.getStringExtra("category") ?: "random"
 
-        if (participants > 0){
-            if (category != "random"){
-                searchActivityByCategoryAndParticipants(participants,category)
-            }else{
+        if (participants > 0) {
+            if (category != "random") {
+                searchActivityByCategoryAndParticipants(participants, category)
+            } else {
                 searchRandom(participants)
             }
         } else {
-            if (category != "random"){
-
-            }else{
+            if (category != "random") {
+                searchByCategory(category)
+            } else {
 
             }
         }
@@ -65,11 +65,15 @@ class SuggestionActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
 
             val apiResponse: Response<ActivityResponse> =
-                provideApiService().getActivityByParticipantsAndType(participants,category.lowercase())
+                provideApiService().getActivityByParticipantsAndType(
+                    participants,
+                    category.lowercase()
+                )
 
             val activityResponse = apiResponse.body()
 
             runOnUiThread {
+
                 if (apiResponse.isSuccessful){
                     if (activityResponse?.error != ""){
                         binding.tvTitle.text = activityResponse?.error
@@ -81,6 +85,7 @@ class SuggestionActivity : AppCompatActivity() {
                         binding.tvType.text = category
                         binding.tvPriceQuantity.text = returnPrice(activityResponse.price ?: 0.0)
                     }
+
 
                 }
             }
@@ -114,15 +119,16 @@ class SuggestionActivity : AppCompatActivity() {
     }
 
 
+
 //    //function to get the activity by category
 //    fun searchByCategory(category: String) {
 //        //get participants from main activity
 //        participants = intent.getIntExtra("participants", 0)
 //        CoroutineScope(Dispatchers.IO).launch {
 //
-//            val apiResponse: Response<ActivityResponse> = getRetrofit()
-//                .create(APIService::class.java)
-//                .getActivityByCategory(category)
+//            val apiResponse: Response<ActivityResponse> = provideApiService()
+                .getActivityByType(category)
+
 //
 //            val activityResponse = apiResponse.body()
 //
@@ -137,6 +143,7 @@ class SuggestionActivity : AppCompatActivity() {
 //
 //        }
 //    }
+
 
 
     // TODO pantalla random arreglar titulo y agregar el icono
