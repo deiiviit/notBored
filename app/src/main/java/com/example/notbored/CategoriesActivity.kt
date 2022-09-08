@@ -17,6 +17,7 @@ class CategoriesActivity : AppCompatActivity() {
         binding = ActivityCategoriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // get participants from intent
         val participants = intent.getIntExtra("participants", 0)
 
