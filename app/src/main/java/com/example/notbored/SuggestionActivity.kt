@@ -46,6 +46,17 @@ class SuggestionActivity : AppCompatActivity() {
         }
     }
 
+    //Calculates price range according to value
+    private fun returnPrice(price: Double) : String{
+        return when {
+            price > 0.0 && price <= 0.3 -> "Low"
+            price > 0.3 && price <= 0.6 -> "Medium"
+            price > 0.6 -> "High"
+            else -> "Free"
+        }
+
+    }
+
     private fun searchActivityByCategoryAndParticipants(participants: Int, category: String) {
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -63,6 +74,7 @@ class SuggestionActivity : AppCompatActivity() {
                     binding.tvTitle.text = activityResponse?.activity ?: ""
                     binding.tvParticipantsQuantity.text = activityResponse?.participants.toString()
                     binding.tvType.text = category
+                    binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
                 }
             }
         }
@@ -84,8 +96,9 @@ class SuggestionActivity : AppCompatActivity() {
                     val activity = activityResponse?.activity ?: ""
                     val type = activityResponse?.type ?: ""
                     binding.tvTitle.text = activity
-                    binding.tvType.text = type.replaceFirstChar { it.uppercase() }
+                    binding.tvType.text = "Random"
                     binding.tvParticipantsQuantity.text = participants.toString()
+                    binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
 
                 }
             }
