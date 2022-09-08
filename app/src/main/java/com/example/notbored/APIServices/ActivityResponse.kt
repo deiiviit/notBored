@@ -10,6 +10,7 @@ data class ActivityResponse(
     @SerializedName("type") var type: String? = null,
     @SerializedName("participants") var participants: Int? = null,
     @SerializedName("price") var price: Double? = null,
-    @SerializedName("accessibility") var accessibility: Double? = null
+    @SerializedName("accessibility") var accessibility: Double? = null,
+    var error: String = ""
 
 )
