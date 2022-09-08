@@ -1,9 +1,12 @@
 package com.example.notbored
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.AdapterView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.notbored.adapter.CategoriesAdapter
 import com.example.notbored.databinding.ActivityCategoriesBinding
+
 
 class CategoriesActivity : AppCompatActivity() {
 
@@ -15,11 +18,29 @@ class CategoriesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initListView()
+
+
+        binding.btnRandom.setOnClickListener {
+            val intent = Intent(this, SuggestionActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun initListView() {
-        val categoriesList = listOf("Education","Recreational", "Social", "Diy", "Charity", "Cooking", "Relaxation", "Music", "Busywork")
-        binding.lvCategories.adapter = CategoriesAdapter(categoriesList,this)
+        val categoriesList = listOf(
+            "Education",
+            "Recreational",
+            "Social",
+            "Diy",
+            "Charity",
+            "Cooking",
+            "Relaxation",
+            "Music",
+            "Busywork"
+        )
+        binding.lvCategories.adapter = CategoriesAdapter(categoriesList, this)
     }
+
 
 }

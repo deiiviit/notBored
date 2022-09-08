@@ -1,6 +1,6 @@
 package com.example.notbored
 
-import android.app.Activity
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.notbored.APIServices.APIService
@@ -11,9 +11,7 @@ import kotlinx.coroutines.launch
 import com.example.notbored.APIServices.getRetrofit
 import com.example.notbored.databinding.ActivitySuggestionBinding
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
+
 
 class SuggestionActivity : AppCompatActivity() {
 
@@ -24,6 +22,11 @@ class SuggestionActivity : AppCompatActivity() {
         binding = ActivitySuggestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         searchRandom()
+
+        // click btnBack and back to CategoryActivity
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
 
@@ -49,6 +52,3 @@ class SuggestionActivity : AppCompatActivity() {
 
 
 }
-
-
-
