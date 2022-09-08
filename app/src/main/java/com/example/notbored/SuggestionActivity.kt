@@ -8,7 +8,7 @@ import com.example.notbored.APIServices.ActivityResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.example.notbored.APIServices.getRetrofit
+import com.example.notbored.APIServices.provideApiService
 import com.example.notbored.databinding.ActivitySuggestionBinding
 import retrofit2.Response
 
@@ -34,8 +34,7 @@ class SuggestionActivity : AppCompatActivity() {
     private fun searchRandom() {
         CoroutineScope(Dispatchers.IO).launch {
 
-           val apiResponse : Response<ActivityResponse> = getRetrofit()
-               .create(APIService::class.java)
+           val apiResponse : Response<ActivityResponse> = provideApiService()
                .getRandomActivity()
 
             val activityResponse = apiResponse.body()
