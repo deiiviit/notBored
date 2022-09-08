@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/coor_background"
+    android:background="@color/backgroundColor"
     tools:context=".TermsConditions">
 
     <ScrollView
@@ -24,7 +24,6 @@
 
         <TextView
             android:id="@+id/textView"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/terms_conditions_text"
@@ -53,7 +52,7 @@
         android:layout_marginTop="164dp"
         android:text="@string/not_bored_activity_inicio"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/color_button"
+        android:textColor="@color/primaryColor"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,10 +60,10 @@
         tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ibClose"
         android:layout_width="41dp"
         android:layout_height="53dp"
-        android:background="@color/coor_background"
+        android:background="@color/backgroundColor"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.889"

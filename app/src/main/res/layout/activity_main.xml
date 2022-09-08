@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3E5FC"
-    android:backgroundTint="@color/color_button"
-    android:backgroundTintMode="screen"
+    android:background="@color/backgroundColor"
+    android:backgroundTint="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <TextView
@@ -15,7 +14,7 @@
         android:layout_height="74dp"
         android:text="@string/not_bored_activity_inicio"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#03A9F4"
+        android:textColor="@color/primaryColor"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/participants_activity_inicio"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
@@ -41,8 +41,7 @@
         android:id="@+id/btnStart"
         android:layout_width="357dp"
         android:layout_height="53dp"
-
-        android:backgroundTint="@color/color_button"
+        android:backgroundTint="@color/primaryColor"
         android:color="@color/white"
         android:text="@string/start_button_activity_inicio"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,16 +62,19 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.606" />
+        app:layout_constraintVertical_bias="0.606"
+        android:autofillHints="" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvTermsConditions"
+        android:textAlignment="center"
         android:layout_width="194dp"
         android:layout_height="19dp"
+        android:layout_marginBottom="68dp"
         android:text="@string/terms_conditions_activity_inicio"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStart"
         app:layout_constraintVertical_bias="0.129" />
