@@ -36,6 +36,8 @@ class CategoriesAdapter (private val categoriesList : List<String>, context: Con
             intent.putExtra("category", getItem(position) as String)
             parent?.context?.startActivity(intent)
         }
+
+
         return view
     }
 }
