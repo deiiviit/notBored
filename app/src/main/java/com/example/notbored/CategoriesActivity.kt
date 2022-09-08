@@ -19,13 +19,12 @@ class CategoriesActivity : AppCompatActivity() {
 
         initListView()
         // get participants from intent
-        val participants = intent.getIntExtra("participants", 0)
+
 
         binding.btnRandom.setOnClickListener {
             val intent = Intent(this, SuggestionActivity::class.java).also {
-                it.putExtra("participants", participants)
+                it.putExtra("participants", intent.getStringExtra("participants"))
                 it.putExtra("random", true)
-                it.putExtra("random", "random")
             }
             startActivity(intent)
         }

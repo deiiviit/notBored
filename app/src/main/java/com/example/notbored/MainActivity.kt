@@ -11,31 +11,19 @@ class MainActivity : AppCompatActivity() {
     //binding
     private lateinit var binding: ActivityMainBinding
 
-    private var participants: Int = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnStart.isEnabled = binding.editTextNumber.text.toString().isNotEmpty()
 
-        binding.editTextNumber.addTextChangedListener {
-            binding.btnStart.isEnabled = binding.editTextNumber.text.toString().isNotEmpty()
 
-        }
-        //update participants with the value from the edit text
-        binding.editTextNumber.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                participants = binding.editTextNumber.text.toString().toInt()
-            }
-        }
-
+        //Intent to go to the CategoriesActivity
         val intentToCategoriesActivity = Intent(this, CategoriesActivity::class.java).also {
-
-            it.putExtra("participants", participants)
+            it.putExtra("participants", binding.editTextNumber.text.toString())
         }
 
+        // start the activity
         binding.btnStart.setOnClickListener {
-
             startActivity(intentToCategoriesActivity)
         }
 
@@ -46,11 +34,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
-
-
-
     }
+
+    // function to go from
+
 
 }

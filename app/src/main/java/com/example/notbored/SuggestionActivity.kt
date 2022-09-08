@@ -2,6 +2,7 @@ package com.example.notbored
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notbored.APIServices.APIService
 import com.example.notbored.APIServices.ActivityResponse
@@ -23,11 +24,14 @@ class SuggestionActivity : AppCompatActivity() {
         binding = ActivitySuggestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var participants = intent.getIntExtra("participants", 1)
+
+
         // check if random button is clicked
         val random = intent.getBooleanExtra("random", false)
         if (random) {
-            searchRandom(participants = participants)
+
+            binding.tvType.text = getString(R.string.random)
+            searchRandom()
         }
 
 
@@ -35,10 +39,11 @@ class SuggestionActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             finish()
         }
+
+
     }
 
-    private fun searchRandom(participants: Int) {
-        //get participants from previous activity
+    private fun searchRandom() {
         CoroutineScope(Dispatchers.IO).launch {
             val apiResponse: Response<ActivityResponse> = getRetrofit()
                 .create(APIService::class.java)
@@ -50,16 +55,19 @@ class SuggestionActivity : AppCompatActivity() {
                 if (apiResponse.isSuccessful) {
                     val activity = activityResponse?.activity ?: ""
                     val type = activityResponse?.type ?: ""
+                    val participants = activityResponse?.participants ?: ""
                     binding.tvTitle.text = activity
-                    binding.tvType.text = type.replaceFirstChar { it.uppercase() }
+                    binding.tvCategory.text = type.replaceFirstChar { it.uppercase() }
                     binding.tvParticipantsQuantity.text = participants.toString()
+                    binding.ivCategory.visibility = View.VISIBLE
+                    binding.tvCategory.visibility = View.VISIBLE
 
                 }
             }
 
         }
     }
-//    //function to get the activity by category
+    //function to get the activity by category
 //    fun searchByCategory(category: String) {
 //        //get participants from main activity
 //        participants = intent.getIntExtra("participants", 0)
