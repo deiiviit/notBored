@@ -3,14 +3,13 @@ package com.example.notbored
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.notbored.APIServices.APIService
 import com.example.notbored.APIServices.ActivityResponse
+import com.example.notbored.APIServices.getRetrofit
 import com.example.notbored.databinding.ActivitySuggestionBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.example.notbored.APIServices.provideApiService
-
-
 import retrofit2.Response
 
 
@@ -32,7 +31,6 @@ class SuggestionActivity : AppCompatActivity() {
         }
 
 
-
         // click btnBack and back to CategoryActivity
         binding.btnBack.setOnClickListener {
             finish()
@@ -42,9 +40,12 @@ class SuggestionActivity : AppCompatActivity() {
     private fun searchRandom(participants: Int) {
         //get participants from previous activity
         CoroutineScope(Dispatchers.IO).launch {
-           val apiResponse : Response<ActivityResponse> = provideApiService()
-               .getRandomActivity()
+            val apiResponse: Response<ActivityResponse> = getRetrofit()
+                .create(APIService::class.java)
+                .getRandomActivity()
+
             val activityResponse = apiResponse.body()
+
             runOnUiThread {
                 if (apiResponse.isSuccessful) {
                     val activity = activityResponse?.activity ?: ""
@@ -58,7 +59,6 @@ class SuggestionActivity : AppCompatActivity() {
 
         }
     }
-
 //    //function to get the activity by category
 //    fun searchByCategory(category: String) {
 //        //get participants from main activity
@@ -87,8 +87,6 @@ class SuggestionActivity : AppCompatActivity() {
     // TODO pantalla random arreglar titulo y agregar el icono
 
     //TODO intent - actualizar screen activity
-
-
 
 
 }
