@@ -2,6 +2,7 @@ package com.example.notbored.APIServices
 
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface APIService {
@@ -13,9 +14,16 @@ interface APIService {
     suspend fun getRandomActivity(): Response<ActivityResponse>
 
 
-    //TODO get request with type and participants
+    @GET("activity/")
+    suspend fun getActivityByParticipantsAndType(
+        @Query("participants") participants:Int,
+        @Query("type") category: String
+    ): Response<ActivityResponse>
 
-    //TODO  get request type
+    @GET("activity/")
+    suspend fun getActivityByParticipants(
+        @Query("participants") participants:Int
+    ): Response<ActivityResponse>
 
 
 
