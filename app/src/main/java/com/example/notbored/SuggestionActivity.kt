@@ -2,6 +2,8 @@ package com.example.notbored
 
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notbored.APIServices.ActivityResponse
 import com.example.notbored.APIServices.provideApiService
@@ -10,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.lang.Error
 
 
 class SuggestionActivity : AppCompatActivity() {
@@ -68,10 +71,17 @@ class SuggestionActivity : AppCompatActivity() {
 
             runOnUiThread {
                 if (apiResponse.isSuccessful){
-                    binding.tvTitle.text = activityResponse?.activity ?: ""
-                    binding.tvParticipantsQuantity.text = activityResponse?.participants.toString()
-                    binding.tvType.text = category
-                    binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
+                    if (activityResponse?.error != ""){
+                        binding.tvTitle.text = activityResponse?.error
+                        binding.tvParticipantsQuantity.text = ""
+                        binding.tvPriceQuantity.text = ""
+                    }else{
+                        binding.tvTitle.text = activityResponse.activity ?: ""
+                        binding.tvParticipantsQuantity.text = activityResponse.participants.toString()
+                        binding.tvType.text = category
+                        binding.tvPriceQuantity.text = returnPrice(activityResponse.price ?: 0.0)
+                    }
+
                 }
             }
         }
@@ -102,6 +112,7 @@ class SuggestionActivity : AppCompatActivity() {
 
         }
     }
+
 
 //    //function to get the activity by category
 //    fun searchByCategory(category: String) {
