@@ -15,18 +15,20 @@ interface APIService {
 
     @GET("activity/")
     suspend fun getActivityByParticipantsAndType(
-        @Query("participants") participants:Int,
+        @Query("participants") participants: Int,
         @Query("type") activity: String
     ): Response<ActivityResponse>
 
     @GET("activity/")
     suspend fun getActivityByParticipants(
-        @Query("participants") participants:Int
+        @Query("participants") participants: Int
+    ): Response<ActivityResponse>
+
+    @GET("activity/")
+    suspend fun getActivityByType(
+        @Query("type") activity: String
     ): Response<ActivityResponse>
 
 
-    //TODO get request with type and participants
-
-    //TODO  get request type
 
 }
