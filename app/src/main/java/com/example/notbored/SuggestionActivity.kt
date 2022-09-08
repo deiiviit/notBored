@@ -2,8 +2,6 @@ package com.example.notbored
 
 
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notbored.APIServices.ActivityResponse
@@ -13,7 +11,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.lang.Error
 
 
 class SuggestionActivity : AppCompatActivity() {
@@ -77,14 +74,15 @@ class SuggestionActivity : AppCompatActivity() {
 
             runOnUiThread {
 
-                if (apiResponse.isSuccessful){
-                    if (activityResponse?.error != ""){
+                if (apiResponse.isSuccessful) {
+                    if (activityResponse?.error != "") {
                         binding.tvTitle.text = activityResponse?.error
                         binding.tvParticipantsQuantity.text = ""
                         binding.tvPriceQuantity.text = ""
-                    }else{
+                    } else {
                         binding.tvTitle.text = activityResponse.activity ?: ""
-                        binding.tvParticipantsQuantity.text = activityResponse.participants.toString()
+                        binding.tvParticipantsQuantity.text =
+                            activityResponse.participants.toString()
                         binding.tvType.text = category
                         binding.tvPriceQuantity.text = returnPrice(activityResponse.price ?: 0.0)
                     }
@@ -167,9 +165,6 @@ class SuggestionActivity : AppCompatActivity() {
 }
 
 
-    // TODO pantalla random arreglar titulo y agregar el icono
+// TODO pantalla random arreglar titulo y agregar el icono
 
-    //TODO intent - actualizar screen activity
-
-
-}
+//TODO intent - actualizar screen activity
