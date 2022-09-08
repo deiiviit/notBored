@@ -18,14 +18,10 @@ class CategoriesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initListView()
-        // get participants from intent
 
 
         binding.btnRandom.setOnClickListener {
-            val intent = Intent(this, SuggestionActivity::class.java).also {
-                it.putExtra("participants", intent.getStringExtra("participants"))
-                it.putExtra("random", true)
-            }
+            val intent = Intent(this, SuggestionActivity::class.java)
             startActivity(intent)
         }
 

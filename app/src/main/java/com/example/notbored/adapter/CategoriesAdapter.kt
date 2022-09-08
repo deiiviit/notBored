@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notbored.R
 import com.example.notbored.SuggestionActivity
 
-class CategoriesAdapter (private val categoriesList : List<String>, context: Context) : BaseAdapter() {
+class CategoriesAdapter (private val categoriesList : List<String>, context: Context, private val participants : Int) : BaseAdapter() {
 
     private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -34,10 +34,12 @@ class CategoriesAdapter (private val categoriesList : List<String>, context: Con
         view.setOnClickListener {
             val intent = Intent(parent?.context, SuggestionActivity::class.java)
             intent.putExtra("category", getItem(position) as String)
+            intent.putExtra("participants", participants )
             parent?.context?.startActivity(intent)
         }
 
 
         return view
     }
+
 }

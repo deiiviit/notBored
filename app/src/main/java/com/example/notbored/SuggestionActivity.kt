@@ -2,15 +2,15 @@ package com.example.notbored
 
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notbored.APIServices.APIService
 import com.example.notbored.APIServices.ActivityResponse
-import com.example.notbored.APIServices.getRetrofit
 import com.example.notbored.databinding.ActivitySuggestionBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.example.notbored.APIServices.provideApiService
+
 import retrofit2.Response
 
 
@@ -24,30 +24,31 @@ class SuggestionActivity : AppCompatActivity() {
         binding = ActivitySuggestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        //retrieves number of participants and category from intent
+        val participants = intent.getIntExtra("participants", 1)
+        val category = intent.getStringExtra("category")?.lowercase()
 
         // check if random button is clicked
         val random = intent.getBooleanExtra("random", false)
         if (random) {
-
-            binding.tvType.text = getString(R.string.random)
-            searchRandom()
+            searchRandom(participants = participants)
         }
+
 
 
         // click btnBack and back to CategoryActivity
         binding.btnBack.setOnClickListener {
             finish()
         }
-
-
     }
 
-    private fun searchRandom() {
+    private fun searchRandom(participants: Int) {
+        //get participants from previous activity
         CoroutineScope(Dispatchers.IO).launch {
-            val apiResponse: Response<ActivityResponse> = getRetrofit()
-                .create(APIService::class.java)
-                .getRandomActivity()
+
+
+           val apiResponse : Response<ActivityResponse> = provideApiService()
+               .getRandomActivity()
 
             val activityResponse = apiResponse.body()
 
@@ -67,7 +68,8 @@ class SuggestionActivity : AppCompatActivity() {
 
         }
     }
-    //function to get the activity by category
+
+//    //function to get the activity by category
 //    fun searchByCategory(category: String) {
 //        //get participants from main activity
 //        participants = intent.getIntExtra("participants", 0)
@@ -90,6 +92,11 @@ class SuggestionActivity : AppCompatActivity() {
 //
 //        }
 //    }
+
+
+    // TODO pantalla random arreglar titulo y agregar el icono
+
+    //TODO intent - actualizar screen activity
 
 
     // TODO pantalla random arreglar titulo y agregar el icono
