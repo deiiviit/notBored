@@ -17,15 +17,20 @@ class SuggestionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySuggestionBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySuggestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnTryAnother.setOnClickListener {
-            searchRandom()
-
+        var participants = intent.getIntExtra("participants", 1)
+        // check if random button is clicked
+        val random = intent.getBooleanExtra("random", false)
+        if (random) {
+            searchRandom(participants = participants)
         }
+
+
 
         // click btnBack and back to CategoryActivity
         binding.btnBack.setOnClickListener {
@@ -33,10 +38,9 @@ class SuggestionActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun searchRandom() {
+    private fun searchRandom(participants: Int) {
+        //get participants from previous activity
         CoroutineScope(Dispatchers.IO).launch {
-
             val apiResponse: Response<ActivityResponse> = getRetrofit()
                 .create(APIService::class.java)
                 .getRandomActivity()
@@ -46,13 +50,47 @@ class SuggestionActivity : AppCompatActivity() {
             runOnUiThread {
                 if (apiResponse.isSuccessful) {
                     val activity = activityResponse?.activity ?: ""
+                    val type = activityResponse?.type ?: ""
                     binding.tvTitle.text = activity
+                    binding.tvType.text = type.replaceFirstChar { it.uppercase() }
+                    binding.tvParticipantsQuantity.text = participants.toString()
 
                 }
             }
 
         }
     }
+
+//    //function to get the activity by category
+//    fun searchByCategory(category: String) {
+//        //get participants from main activity
+//        participants = intent.getIntExtra("participants", 0)
+//        CoroutineScope(Dispatchers.IO).launch {
+//
+//            val apiResponse: Response<ActivityResponse> = getRetrofit()
+//                .create(APIService::class.java)
+//                .getActivityByCategory(category)
+//
+//            val activityResponse = apiResponse.body()
+//
+//            runOnUiThread {
+//                if (apiResponse.isSuccessful) {
+//                    val activity = activityResponse?.activity ?: ""
+//                    binding.tvTitle.text = activity
+//                    binding.tvParticipantsQuantity.text = participants.toString()
+//
+//                }
+//            }
+//
+//        }
+//    }
+
+
+    // TODO pantalla random arreglar titulo y agregar el icono
+
+    //TODO intent - actualizar screen activity
+
+
 
 
 }
