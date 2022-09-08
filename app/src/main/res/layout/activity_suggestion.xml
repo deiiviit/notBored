@@ -69,11 +69,11 @@
             android:id="@+id/ivParticipants"
             android:layout_width="@dimen/iconSize"
             android:layout_height="@dimen/iconSize"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="348dp"
             android:background="@drawable/ic_baseline_person_24"
+            android:contentDescription="TODO"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvParticipants"
@@ -145,7 +145,7 @@
             app:layout_constraintGuide_begin="32dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnTryAnother"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="72dp"
