@@ -11,4 +11,12 @@ interface APIService {
 
     @GET("activity/") //get request for an activity of random type
     suspend fun getRandomActivity(): Response<ActivityResponse>
+
+
+    //TODO get request with type and participants
+
+    //TODO  get request type
+
+
+
 }
