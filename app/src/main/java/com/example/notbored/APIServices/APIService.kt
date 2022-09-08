@@ -27,6 +27,6 @@ interface APIService {
 
     @GET("activity/")
     suspend fun getActivityByType(
-        @Query("type") participants: String
+        @Query("type") type: String
     ): Response<ActivityResponse>
 }
