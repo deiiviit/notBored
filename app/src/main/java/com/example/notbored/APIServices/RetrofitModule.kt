@@ -15,3 +15,8 @@ fun getRetrofit(): Retrofit {
 
 
 }
+
+fun provideApiService(): APIService {
+    return getRetrofit()
+        .create(APIService::class.java)
+}
