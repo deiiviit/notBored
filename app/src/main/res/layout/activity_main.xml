@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.924" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnStart"
         android:layout_width="357dp"
         android:layout_height="53dp"
 
@@ -58,7 +58,6 @@
         android:layout_height="48dp"
         android:background="@color/white"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
@@ -75,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/btnStart"
         app:layout_constraintVertical_bias="0.129" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
