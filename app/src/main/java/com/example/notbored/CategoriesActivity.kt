@@ -17,9 +17,12 @@ class CategoriesActivity : AppCompatActivity() {
         binding = ActivityCategoriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initListView()
+
         // get participants from intent
         val participants = intent.getIntExtra("participants", 0)
+
+        initListView(participants)
+
 
         binding.btnRandom.setOnClickListener {
             val intent = Intent(this, SuggestionActivity::class.java).also {
@@ -32,7 +35,7 @@ class CategoriesActivity : AppCompatActivity() {
 
     }
 
-    private fun initListView() {
+    private fun initListView(participants: Int) {
         val categoriesList = listOf(
             "Education",
             "Recreational",
@@ -44,7 +47,7 @@ class CategoriesActivity : AppCompatActivity() {
             "Music",
             "Busywork"
         )
-        binding.lvCategories.adapter = CategoriesAdapter(categoriesList, this)
+        binding.lvCategories.adapter = CategoriesAdapter(categoriesList, this, participants)
     }
 
 

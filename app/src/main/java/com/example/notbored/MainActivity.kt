@@ -9,47 +9,43 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+
+import androidx.core.widget.addTextChangedListener
+import com.example.notbored.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    //binding
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        var btnStart = findViewById<Button>(R.id.btnStart)
-        var edtParticipants = findViewById<EditText>(R.id.editTextNumber)
-
-        validateEnableButton(btnStart, edtParticipants)
-        onClick(edtParticipants, btnStart)
-
+        validateEnableButton()
+        onClickButtonStart()
     }
 
-    private fun onClick(edtParticipants: EditText, btnStart: Button) {
-        btnStart.setOnClickListener {
-            var intent = Intent(this, CategoriesActivity::class.java)
-            intent.putExtra(
-                "participants",
-                edtParticipants.toString()
-            ) //esta enviando el dato pero en string :(
-            startActivity(intent)
+    fun onClickButtonStart() {
+        binding.btnStart.setOnClickListener {
+            val intentToCategoriesActivity = Intent(this, CategoriesActivity::class.java).also {
+                it.putExtra("participants", binding.editTextNumber.text.toString().toInt())
+            }
+            startActivity(intentToCategoriesActivity)
         }
     }
 
-    private fun validateEnableButton(btnStart: Button, edtParticipants: EditText) {
-        btnStart.isEnabled = false
-
-        edtParticipants.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                when {
-                    !validateFieldParticipants(edtParticipants) -> btnStart.isEnabled = false
-               //   Toast.makeText(this, R.string.Data_not_allowed, Toast.LENGTH_LONG).show()
-                    else -> btnStart.isEnabled = true
-                }
+    private fun validateEnableButton() {
+        binding.btnStart.isEnabled = false
+        binding.editTextNumber.addTextChangedListener {
+            when {
+                !validateFieldParticipants(binding.editTextNumber) -> binding.btnStart.isEnabled =
+                    false
+                //   Toast.makeText(this, R.string.Data_not_allowed, Toast.LENGTH_LONG).show()
+                else -> binding.btnStart.isEnabled = true
             }
-        })
+        }
     }
 
     private fun validateFieldParticipants(edtParticipants: EditText): Boolean {
@@ -57,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         return when {
             numberOfParticipants.isNullOrEmpty()
                     || !isNumeric(numberOfParticipants)
-                    || numberOfParticipants.toInt() <0 -> false
+                    || numberOfParticipants.toInt() < 0 -> false
             else -> true
         }
     }

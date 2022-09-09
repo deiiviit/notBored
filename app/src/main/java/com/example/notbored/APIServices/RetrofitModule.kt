@@ -12,9 +12,11 @@ fun getRetrofit(): Retrofit {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+
 }
 
-fun provideApiService() : APIService{
-   return getRetrofit()
+fun provideApiService(): APIService {
+    return getRetrofit()
         .create(APIService::class.java)
 }

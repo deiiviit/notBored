@@ -24,5 +24,6 @@
 
     <string name="suggestionName">Recreational</string>
     <string name="activities">Activities</string>
+    <string name="random">Random</string>
 
 </resources>

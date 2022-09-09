@@ -70,7 +70,7 @@
             android:id="@+id/ivParticipants"
             android:layout_width="@dimen/iconSize"
             android:layout_height="@dimen/iconSize"
-            android:layout_marginTop="348dp"
+            android:layout_marginTop="316dp"
             android:background="@drawable/ic_baseline_person_24"
             android:contentDescription="TODO"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -92,7 +92,6 @@
             android:id="@+id/tvParticipantsQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@id/tvParticipants"
@@ -124,12 +123,34 @@
             android:id="@+id/tvPriceQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@id/tvPrice"
             app:layout_constraintEnd_toEndOf="@+id/tvParticipantsQuantity"
             app:layout_constraintTop_toTopOf="@id/tvPrice" />
+
+        <ImageView
+            android:id="@+id/ivCategory"
+            android:layout_width="@dimen/iconSize"
+            android:layout_height="@dimen/iconSize"
+            android:layout_marginVertical="@dimen/iconHorizontalMargin"
+            android:background="@drawable/ic_baseline_format_list_bulleted_24"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/ivPrice"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoriy"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/ivCategory"
+            app:layout_constraintStart_toStartOf="@+id/tvPrice"
+            app:layout_constraintTop_toTopOf="@id/ivCategory" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
