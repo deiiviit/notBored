@@ -23,8 +23,8 @@ class SuggestionActivity : AppCompatActivity() {
         binding = ActivitySuggestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // getData centralized
         getData()
+
         // click btnBack and back to CategoryActivity
         binding.btnBack.setOnClickListener {
             finish()
@@ -36,10 +36,11 @@ class SuggestionActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo orquestador para obtener informacion de las actividades segun los participantes o actividades seleccionadas
+     * Method to decide which api request is called based on number of participants and category
      */
     private fun getData() {
-        //retrieves number of participants and category from intent
+
+        //Retrieves number of participants and category from intent
         val participants = intent.getIntExtra("participants", 1)
         val category = intent.getStringExtra("category") ?: "random"
 
@@ -59,9 +60,9 @@ class SuggestionActivity : AppCompatActivity() {
 
 
     /**
-     * Metodo implementado para categorizar los precios de acuerdo al valor que retorna la API
-     * @param price valor recibido desde la API
-      */
+     * Method to return price accessibility based on price specific value
+     * @param price specific price of activity
+     */
     private fun returnPrice(price: Double): String {
         return when {
             price > 0.0 && price <= 0.3 -> "Low"
@@ -72,11 +73,10 @@ class SuggestionActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo encargado de obtener la informacion de la API cuando se ingresa numero de participantes y se selecciona categoria
-     * Se hace el llamado a la API
-     *Se setean propiedades a mostrar en vistas
-     * @param participants Cantidad de participantes ingresados
-     * @param category categoria seleccionada por el usuario
+     * This method makes an api request for an activity given a specific number of
+     * participants and category and shows the data in the UI
+     * @param participants number of participants wanted
+     * @param category category wanted
      */
     private fun searchActivityByCategoryAndParticipants(participants: Int, category: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -88,7 +88,7 @@ class SuggestionActivity : AppCompatActivity() {
             runOnUiThread {
                 apiResponse.let {
                     when {
-                        //Si se hace el llamado a la API correctamente
+
                         it.isSuccessful -> {
                             val activityResponse = apiResponse.body()
                             if (activityResponse?.error != "") {
@@ -111,23 +111,22 @@ class SuggestionActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo encargado de obtener la informacion de la API cuando se ingresa numero de participantes
-     * Se hace el llamado a la API
-     *Se setean propiedades a mostrar en vistas
-     * @param participants Cantidad de participantes ingresados
+     * This method makes an api request for an activity of random category given a specific number of
+     * participants, and shows the data received in the UI
+     * @param participants quantity of participants required
      */
     private fun searchRandomWithParticipants(participants: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            //se hace el llamado a la API
+
             val apiResponse: Response<ActivityResponse> = provideApiService()
                 .getActivityByParticipants(participants)
-            //Se extrae el body de la api
+
             val activityResponse = apiResponse.body()
 
             runOnUiThread {
                 apiResponse.let {
                     when {
-                        //cuando es exitosa se van a setear todos los campos
+
                         it.isSuccessful -> {
                             if (activityResponse?.error != "") {
                                 binding.tvTitle.text = activityResponse?.error
@@ -138,8 +137,10 @@ class SuggestionActivity : AppCompatActivity() {
                                 binding.tvType.text = "Random"
                                 binding.tvParticipantsQuantity.text =
                                     activityResponse.participants.toString()
-                                binding.tvPriceQuantity.text = returnPrice(activityResponse.price ?: 0.0)
-                                binding.tvCategory.text = activityResponse.type?.replaceFirstChar { it.uppercase() } ?: ""
+                                binding.tvPriceQuantity.text =
+                                    returnPrice(activityResponse.price ?: 0.0)
+                                binding.tvCategory.text =
+                                    activityResponse.type?.replaceFirstChar { it.uppercase() } ?: ""
                                 binding.ivCategory.visibility = View.VISIBLE
                                 binding.tvCategory.visibility = View.VISIBLE
                             }
@@ -151,10 +152,9 @@ class SuggestionActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo encargado de obtener la informacion de la API cuando se selecciona categoria
-     * Se hace el llamado a la API
-     *Se setean propiedades a mostrar en vistas
-     * @param category categoria seleccionada por el usuario
+     * This method makes an api request for an activity with a random amount of participants,
+     * given a specific category, and shows the data receive in the UI
+     * @param category specific category requested
      */
     private fun searchByCategoryWithoutParticipants(category: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -181,11 +181,10 @@ class SuggestionActivity : AppCompatActivity() {
 
 
     /**
-     * method to get random activity suggestions without any parameters
-     * Se hace el llamado a la API
-     *Se setean propiedades a mostrar en vistas
+     * This method makes an api request for an activity with a random amount of participants,
+     * and a random category, and shows the data received in the UI
      */
-    fun searchByRandomWithoutParticipants() {
+    private fun searchByRandomWithoutParticipants() {
         CoroutineScope(Dispatchers.IO).launch {
             val apiResponse: Response<ActivityResponse> = provideApiService()
                 .getRandomActivity()
