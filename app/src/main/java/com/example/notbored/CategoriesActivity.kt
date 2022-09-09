@@ -22,11 +22,11 @@ class CategoriesActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo implementado para obtener la cantidad de participantes ingresados a traves de un intent.getIntExtra
-     * Se crea el evento al boton random para que navegue hacia la activity SuggestionActivity
-     * Se usa putExtra para enviar el numero de participantes y _________________________
+     * Implemented method to get the number of participants entered through an intent.getIntExtra
+     * The event is created for the random button so that it navigates to the SuggestionActivity activity
+     * putExtra is used to send the number of participants and _________________________
      */
-    fun getParticipantsFromIntent(){
+    private fun getParticipantsFromIntent(){
         val participants = intent.getIntExtra("participants", 0)
         initListView(participants)
 
@@ -40,7 +40,7 @@ class CategoriesActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo implementado para crear una lista con las categorias requeridas
+     * Implemented method to create a list with the required categories
      *
      */
     private fun initListView(participants: Int) {
