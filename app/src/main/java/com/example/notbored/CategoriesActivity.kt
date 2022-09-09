@@ -33,8 +33,6 @@ class CategoriesActivity : AppCompatActivity() {
         binding.btnRandom.setOnClickListener {
             val intent = Intent(this, SuggestionActivity::class.java).also {
                 it.putExtra("participants", participants)
-                //it.putExtra("random", true)
-                //it.putExtra("random", "random")
                 it.putExtra("category", "random")
             }
             startActivity(intent)

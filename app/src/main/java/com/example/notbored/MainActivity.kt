@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Método que implementa la navegacion entre las actividades de inicio a categoriesActivity al hacer click en el boton start
-     *.also se usa ya que se desea usar el intent para enviar el dato recibido en el fieldtext
+     * Method that implements navigation between start activities to categoriesActivity when clicking the start buttont
+     *.also it is used since you want to use the intent to send the data received in the fieldtext
      */
     fun onClickButtonStart() {
         binding.btnStart.setOnClickListener {
@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo orquestador para inhabilitar o habilitar el boton Start
-     * Se invoca al método validateFieldParticipants  que retorna un boolen
-     * En caso de recibir un false, se invoca al método changeStatusButton para que cambie de color
-     * addTextChangedListener funciona como un oyente del campo de texto
-     * Detecta los cambios desde que el campo esté vacio, cuando se esta escribiendo y se termina de escribir
+     * Orchestrator method to disable or enable the Start button
+     * The validate Field Participants method is called, which returns a boolean
+     * In case of receiving a false, the changeStatusButton method is called so that it changes color
+     * addTextChangedListener works as a listener of the text field
+     * Detect changes since the field is empty, when it is being written and when it is finished writing
      */
     private fun validateEnableButton() {
         changeStatusButton(false)
@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Método implementado para validar que el dato ingresado sea permitido por la aplicación o segun lo requerido
-     * Se valida si el campo de texto esta vacio, o si no es numerico o es un numero menor a 0
-      * @param edtParticipants Recibe el dato ingresado por el usuario
+     * Implemented method to validate that the entered data is allowed by the application or as required
+     * It is validated if the text field is empty, or if it is not numeric or if it is a number less than 0
+     * @param edtParticipants Receives the data entered by the user
 
      */
     private fun validateFieldParticipants(edtParticipants: EditText): Boolean {
@@ -70,8 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo implementado para realizar el cambio del color del botón y habilitar o inhabilitar el
-     * boton start
+     * Implemented method to change the color of the button and enable or disable the start button
      */
     private fun changeStatusButton(flagStatusButton: Boolean) {
         binding.btnStart.isEnabled = flagStatusButton
@@ -83,10 +82,9 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-     * Metodo implementado para validar si el número que ingresa como parámetro es numerico
-     * valida caracter por caracter para saber si es dígito
-     * @param toCheck numero que entra para validar
-     * @return true si es numerico o false si no lo es
+     * Implemented method to validate if the number you enter as a parameter is numeric
+     * @param toCheck number you enter to validate
+     * @return true if numeric or false if not
      */
     private fun isNumeric(toCheck: String): Boolean {
         return toCheck.all { char -> char.isDigit() }
@@ -94,8 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Metodo que permite la navegacion a la activity de terminos y condiciones
-     * se usa un intent para iniciar la actividad
+     * Method that allows navigation to the terms and conditions activity
      */
     private fun goActivityTermsConditions() {
         binding.tvTermsConditions.setOnClickListener() {
