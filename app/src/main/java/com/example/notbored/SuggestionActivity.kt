@@ -69,7 +69,6 @@ class SuggestionActivity : AppCompatActivity() {
             price > 0.6 -> "High"
             else -> "Free"
         }
-
     }
 
     /**
@@ -130,15 +129,20 @@ class SuggestionActivity : AppCompatActivity() {
                     when {
                         //cuando es exitosa se van a setear todos los campos
                         it.isSuccessful -> {
-                            binding.tvTitle.text = activityResponse?.activity ?: ""
-                            binding.tvType.text = "Random"
-                            binding.tvParticipantsQuantity.text =
-                                activityResponse?.participants.toString()
-                            binding.tvPriceQuantity.text =
-                                returnPrice(activityResponse?.price ?: 0.0)
-                            binding.tvCategory.text = activityResponse?.type ?: ""
-                            binding.ivCategory.visibility = View.VISIBLE
-                            binding.tvCategory.visibility = View.VISIBLE
+                            if (activityResponse?.error != "") {
+                                binding.tvTitle.text = activityResponse?.error
+                                binding.tvParticipantsQuantity.text = ""
+                                binding.tvPriceQuantity.text = ""
+                            } else {
+                                binding.tvTitle.text = activityResponse.activity ?: ""
+                                binding.tvType.text = "Random"
+                                binding.tvParticipantsQuantity.text =
+                                    activityResponse.participants.toString()
+                                binding.tvPriceQuantity.text = returnPrice(activityResponse.price ?: 0.0)
+                                binding.tvCategory.text = activityResponse.type?.replaceFirstChar { it.uppercase() } ?: ""
+                                binding.ivCategory.visibility = View.VISIBLE
+                                binding.tvCategory.visibility = View.VISIBLE
+                            }
                         }
                     }
                 }
@@ -175,12 +179,13 @@ class SuggestionActivity : AppCompatActivity() {
         }
     }
 
+
     /**
      * method to get random activity suggestions without any parameters
      * Se hace el llamado a la API
      *Se setean propiedades a mostrar en vistas
      */
-    private fun searchByRandomWithoutParticipants() {
+    fun searchByRandomWithoutParticipants() {
         CoroutineScope(Dispatchers.IO).launch {
             val apiResponse: Response<ActivityResponse> = provideApiService()
                 .getRandomActivity()
@@ -189,15 +194,22 @@ class SuggestionActivity : AppCompatActivity() {
                 apiResponse.let {
                     when {
                         it.isSuccessful -> {
-                            binding.tvTitle.text = activityResponse?.activity ?: ""
-                            binding.tvType.text = "Random"
-                            binding.tvParticipantsQuantity.text =
-                                activityResponse?.participants.toString()
-                            binding.tvPriceQuantity.text =
-                                returnPrice(activityResponse?.price ?: 0.0)
-                            binding.tvCategory.text = activityResponse?.type ?: ""
-                            binding.ivCategory.visibility = View.VISIBLE
-                            binding.tvCategory.visibility = View.VISIBLE
+                            if (activityResponse?.error != "") {
+                                binding.tvTitle.text = activityResponse?.error
+                                binding.tvParticipantsQuantity.text = ""
+                                binding.tvPriceQuantity.text = ""
+                            } else {
+                                binding.tvTitle.text = activityResponse.activity ?: ""
+                                binding.tvType.text = "Random"
+                                binding.tvParticipantsQuantity.text =
+                                    activityResponse.participants.toString()
+                                binding.tvPriceQuantity.text =
+                                    returnPrice(activityResponse.price ?: 0.0)
+                                binding.tvCategory.text =
+                                    activityResponse.type?.replaceFirstChar { it.uppercase() } ?: ""
+                                binding.ivCategory.visibility = View.VISIBLE
+                                binding.tvCategory.visibility = View.VISIBLE
+                            }
                         }
                     }
                 }
@@ -205,5 +217,3 @@ class SuggestionActivity : AppCompatActivity() {
         }
     }
 }
-
-
