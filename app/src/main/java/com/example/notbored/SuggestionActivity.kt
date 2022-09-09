@@ -129,9 +129,7 @@ class SuggestionActivity : AppCompatActivity() {
 
                         it.isSuccessful -> {
                             if (activityResponse?.error != "") {
-                                binding.tvTitle.text = activityResponse?.error
-                                binding.tvParticipantsQuantity.text = ""
-                                binding.tvPriceQuantity.text = ""
+                                 onError(activityResponse?.error ?: "Request failed")
                             } else {
                                 binding.tvTitle.text = activityResponse.activity ?: ""
                                 binding.tvType.text = "Random"
@@ -194,9 +192,8 @@ class SuggestionActivity : AppCompatActivity() {
                     when {
                         it.isSuccessful -> {
                             if (activityResponse?.error != "") {
-                                binding.tvTitle.text = activityResponse?.error
-                                binding.tvParticipantsQuantity.text = ""
-                                binding.tvPriceQuantity.text = ""
+                                onError(activityResponse?.error ?: "Request failed")
+
                             } else {
                                 binding.tvTitle.text = activityResponse.activity ?: ""
                                 binding.tvType.text = "Random"
@@ -214,5 +211,12 @@ class SuggestionActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    /*Shows given error on the UI*/
+    private fun onError(error: String){
+        binding.tvTitle.text = error
+        binding.tvParticipantsQuantity.text = ""
+        binding.tvPriceQuantity.text = ""
     }
 }
