@@ -114,66 +114,72 @@ class SuggestionActivity : AppCompatActivity() {
 
             runOnUiThread {
                 if (apiResponse.isSuccessful) {
+                    if (activityResponse?.error != "") {
+                        binding.tvTitle.text = activityResponse?.error
+                        binding.tvParticipantsQuantity.text = ""
+                        binding.tvPriceQuantity.text = ""
+                    } else {
+                        binding.tvTitle.text = activityResponse.activity ?: ""
+                        binding.tvType.text = "Random"
+                        binding.tvParticipantsQuantity.text =
+                            activityResponse.participants.toString()
+                        binding.tvPriceQuantity.text = returnPrice(activityResponse.price ?: 0.0)
+                        binding.tvCategory.text = activityResponse.type?.replaceFirstChar { it.uppercase() } ?: ""
+                        binding.ivCategory.visibility = View.VISIBLE
+                        binding.tvCategory.visibility = View.VISIBLE
+                    }
 
-                    binding.tvTitle.text = activityResponse?.activity ?: ""
-                    binding.tvType.text = "Random"
-                    binding.tvParticipantsQuantity.text = activityResponse?.participants.toString()
-                    binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
-                    binding.tvCategory.text = activityResponse?.type ?: ""
-                    binding.ivCategory.visibility = View.VISIBLE
-                    binding.tvCategory.visibility = View.VISIBLE
+
                 }
-
-
             }
         }
     }
 
-    // function to get the activity suggestion depending on the category and without participants
-    private fun searchByCategoryWithoutParticipants(category: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val apiResponse: Response<ActivityResponse> = provideApiService()
-                .getActivityByType(category.lowercase())
-            val activityResponse = apiResponse.body()
-            runOnUiThread {
-                if (apiResponse.isSuccessful) {
-                    binding.tvTitle.text = activityResponse?.activity ?: ""
-                    binding.tvType.text = category
-                    binding.tvParticipantsQuantity.text =
-                        activityResponse?.participants.toString()
-                    binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
+        // function to get the activity suggestion depending on the category and without participants
+        private fun searchByCategoryWithoutParticipants(category: String) {
+            CoroutineScope(Dispatchers.IO).launch {
+                val apiResponse: Response<ActivityResponse> = provideApiService()
+                    .getActivityByType(category.lowercase())
+                val activityResponse = apiResponse.body()
+                runOnUiThread {
+                    if (apiResponse.isSuccessful) {
+                        binding.tvTitle.text = activityResponse?.activity ?: ""
+                        binding.tvType.text = category
+                        binding.tvParticipantsQuantity.text =
+                            activityResponse?.participants.toString()
+                        binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
 
-                }
-            }
-
-        }
-    }
-
-    // function to get the activity suggestion randomly without any parameters
-    private fun searchByRandomWithoutParticipants() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val apiResponse: Response<ActivityResponse> = provideApiService()
-                .getRandomActivity()
-            val activityResponse = apiResponse.body()
-            runOnUiThread {
-                if (apiResponse.isSuccessful) {
-                    binding.tvTitle.text = activityResponse?.activity ?: ""
-                    binding.tvType.text = "Random"
-                    binding.tvParticipantsQuantity.text = activityResponse?.participants.toString()
-                    binding.tvPriceQuantity.text = returnPrice(activityResponse?.price ?: 0.0)
-                    binding.tvCategory.text = activityResponse?.type ?: ""
-                    binding.ivCategory.visibility = View.VISIBLE
-                    binding.tvCategory.visibility = View.VISIBLE
+                    }
                 }
 
-
             }
+        }
 
+        // function to get the activity suggestion randomly without any parameters
+        private fun searchByRandomWithoutParticipants() {
+            CoroutineScope(Dispatchers.IO).launch {
+                val apiResponse: Response<ActivityResponse> = provideApiService()
+                    .getRandomActivity()
+                val activityResponse = apiResponse.body()
+                runOnUiThread {
+                    if (apiResponse.isSuccessful) {
+                        if (activityResponse?.error != "") {
+                            binding.tvTitle.text = activityResponse?.error
+                            binding.tvParticipantsQuantity.text = ""
+                            binding.tvPriceQuantity.text = ""
+                        } else {
+                            binding.tvTitle.text = activityResponse.activity ?: ""
+                            binding.tvType.text = "Random"
+                            binding.tvParticipantsQuantity.text =
+                                activityResponse.participants.toString()
+                            binding.tvPriceQuantity.text =
+                                returnPrice(activityResponse.price ?: 0.0)
+                            binding.tvCategory.text = activityResponse.type?.replaceFirstChar { it.uppercase() }?: ""
+                            binding.ivCategory.visibility = View.VISIBLE
+                            binding.tvCategory.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
         }
     }
-}
-
-
-// TODO pantalla random arreglar titulo y agregar el icono
-
-//TODO intent - actualizar screen activity
