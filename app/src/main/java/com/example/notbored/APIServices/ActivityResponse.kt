@@ -4,7 +4,7 @@ package com.example.notbored.APIServices
 import com.google.gson.annotations.SerializedName
 
 /**
- * data class que representa un objeto encargado de encapsular las respuesta de la API
+ * data class for the API response
  */
 data class ActivityResponse(
     @SerializedName("activity") var activity: String? = null,
