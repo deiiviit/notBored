@@ -27,7 +27,21 @@ class SuggestionActivity : AppCompatActivity() {
         val participants = intent.getIntExtra("participants", 1)
         val category = intent.getStringExtra("category") ?: "random"
 
-        // control flow to determine which API call to make
+
+        chooseApiCall(participants,category)
+
+        binding.btnTryAnother.setOnClickListener {
+            chooseApiCall(participants,category)
+        }
+
+        // click btnBack and back to CategoryActivity
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    // control flow to determine which API call to make
+    private fun chooseApiCall (participants: Int, category: String){
         if (participants > 0) {
             if (category != "random") {
                 searchActivityByCategoryAndParticipants(participants, category)
@@ -40,11 +54,6 @@ class SuggestionActivity : AppCompatActivity() {
             } else {
                 searchByRandomWithoutParticipants()
             }
-        }
-
-        // click btnBack and back to CategoryActivity
-        binding.btnBack.setOnClickListener {
-            finish()
         }
     }
 
