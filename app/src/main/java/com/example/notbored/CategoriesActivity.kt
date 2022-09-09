@@ -24,7 +24,7 @@ class CategoriesActivity : AppCompatActivity() {
     /**
      * Implemented method to get the number of participants entered through an intent.getIntExtra
      * The event is created for the random button so that it navigates to the SuggestionActivity activity
-     * putExtra is used to send the number of participants and _________________________
+     * putExtra is used to send the number of participants and the category to the SuggestionActivity activity
      */
     private fun getParticipantsFromIntent(){
         val participants = intent.getIntExtra("participants", 0)

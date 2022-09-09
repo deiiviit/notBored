@@ -45,8 +45,8 @@ class SuggestionActivity : AppCompatActivity() {
         val category = intent.getStringExtra("category") ?: "random"
 
         // control flow to determine which API call to make
-        val oneOrMoreParticipants: Boolean = participants > 0;
-        val isCategoryRandom: Boolean = category == "random";
+        val oneOrMoreParticipants: Boolean = participants > 0
+        val isCategoryRandom: Boolean = category == "random"
         when {
             oneOrMoreParticipants && isCategoryRandom -> searchRandomWithParticipants(participants)
             oneOrMoreParticipants && !isCategoryRandom -> searchActivityByCategoryAndParticipants(
