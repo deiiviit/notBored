@@ -5,6 +5,7 @@
     <string name="participants_activity_inicio">Participants</string>
     <string name="start_button_activity_inicio">Start</string>
     <string name="terms_conditions_activity_inicio"><a href="http://www.google.com">Terms and conditions</a></string>
+    <string name="Data_not_allowed">Data not allowed</string>
 
     <string name="terms_conditions_activity_terms_and_conditions">Terms and conditions</string>
     <string name="terms_conditions_text">Lorem ipsum dolor sit amet consectetur adipiscing elit inceptos ridiculus iaculis, nullam ligula elementum duis tellus maecenas nec fermentum sed dictum laoreet, taciti donec habitant

@@ -1,6 +1,7 @@
 package com.example.notbored
 
 import android.content.Intent
+import android.graphics.Color
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 when {
                     !validateFieldParticipants(edtParticipants) -> btnStart.isEnabled = false
+               //   Toast.makeText(this, R.string.Data_not_allowed, Toast.LENGTH_LONG).show()
                     else -> btnStart.isEnabled = true
                 }
             }
@@ -54,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         return when {
             numberOfParticipants.isNullOrEmpty()
                     || !isNumeric(numberOfParticipants)
-                    || numberOfParticipants.toInt() <= 0 -> false
+                    || numberOfParticipants.toInt() <0 -> false
             else -> true
         }
     }
