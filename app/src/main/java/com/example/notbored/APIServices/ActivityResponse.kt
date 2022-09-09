@@ -3,9 +3,10 @@ package com.example.notbored.APIServices
 
 import com.google.gson.annotations.SerializedName
 
-
+/**
+ * data class que representa un objeto encargado de encapsular las respuesta de la API
+ */
 data class ActivityResponse(
-
     @SerializedName("activity") var activity: String? = null,
     @SerializedName("type") var type: String? = null,
     @SerializedName("participants") var participants: Int? = null,

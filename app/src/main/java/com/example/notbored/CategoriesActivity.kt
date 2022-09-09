@@ -17,24 +17,34 @@ class CategoriesActivity : AppCompatActivity() {
         binding = ActivityCategoriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getParticipantsFromIntent()
 
-        // get participants from intent
+    }
+
+    /**
+     * Metodo implementado para obtener la cantidad de participantes ingresados a traves de un intent.getIntExtra
+     * Se crea el evento al boton random para que navegue hacia la activity SuggestionActivity
+     * Se usa putExtra para enviar el numero de participantes y _________________________
+     */
+    fun getParticipantsFromIntent(){
         val participants = intent.getIntExtra("participants", 0)
-
         initListView(participants)
-
 
         binding.btnRandom.setOnClickListener {
             val intent = Intent(this, SuggestionActivity::class.java).also {
                 it.putExtra("participants", participants)
-                it.putExtra("random", true)
-                it.putExtra("random", "random")
+                //it.putExtra("random", true)
+                //it.putExtra("random", "random")
+                it.putExtra("category", "random")
             }
             startActivity(intent)
         }
-
     }
 
+    /**
+     * Metodo implementado para crear una lista con las categorias requeridas
+     *
+     */
     private fun initListView(participants: Int) {
         val categoriesList = listOf(
             "Education",

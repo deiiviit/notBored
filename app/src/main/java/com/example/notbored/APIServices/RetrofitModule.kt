@@ -12,8 +12,6 @@ fun getRetrofit(): Retrofit {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-
-
 }
 
 fun provideApiService(): APIService {

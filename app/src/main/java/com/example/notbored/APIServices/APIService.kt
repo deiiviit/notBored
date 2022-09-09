@@ -13,18 +13,20 @@ interface APIService {
     @GET("activity/") //get request for an activity of random type
     suspend fun getRandomActivity(): Response<ActivityResponse>
 
-
+    //get request for participants and type
     @GET("activity/")
     suspend fun getActivityByParticipantsAndType(
         @Query("participants") participants: Int,
-        @Query("type") category: String
+        @Query("type") type: String
     ): Response<ActivityResponse>
 
+    //get request for participants
     @GET("activity/")
     suspend fun getActivityByParticipants(
         @Query("participants") participants: Int
     ): Response<ActivityResponse>
 
+    //get request for type
     @GET("activity/")
     suspend fun getActivityByType(
         @Query("type") type: String

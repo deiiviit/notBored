@@ -4,7 +4,7 @@
     <string name="not_bored_activity_inicio">Not Bored</string>
     <string name="participants_activity_inicio">Participants</string>
     <string name="start_button_activity_inicio">Start</string>
-    <string name="terms_conditions_activity_inicio"><a href="http://www.google.com">Terms and conditions</a></string>
+    <string name="terms_conditions_activity_inicio">Terms and conditions</string>
     <string name="Data_not_allowed">Data not allowed</string>
 
     <string name="terms_conditions_activity_terms_and_conditions">Terms and conditions</string>
@@ -24,6 +24,5 @@
 
     <string name="suggestionName">Recreational</string>
     <string name="activities">Activities</string>
-    <string name="random">Random</string>
 
 </resources>
